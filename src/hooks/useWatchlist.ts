@@ -1,14 +1,19 @@
 import { useState, useCallback } from 'react'
 import type { Movie } from '../types'
+import { sampleMovies } from '../data/sampleMovies'
 
-const STORAGE_KEY = 'lb_watchlist_v1'
+const STORAGE_KEY = 'lb_watchlist_v2'
 
 function loadWatchlist(): Movie[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : []
+    if (raw) {
+      return JSON.parse(raw)
+    }
+    // Initialize with sample movies for demo
+    return sampleMovies.slice(0, 12)
   } catch {
-    return []
+    return sampleMovies.slice(0, 12)
   }
 }
 
@@ -36,10 +41,23 @@ export function useWatchlist() {
     })
   }, [])
 
+  const updateMovie = useCallback((id: number, updates: Partial<Movie>) => {
+    setWatchlist(prev => {
+      const next = prev.map(m => m.id === id ? { ...m, ...updates } : m)
+      saveWatchlist(next)
+      return next
+    })
+  }, [])
+
+  const getMovie = useCallback(
+    (id: number) => watchlist.find(m => m.id === id),
+    [watchlist]
+  )
+
   const isInWatchlist = useCallback(
     (id: number) => watchlist.some(m => m.id === id),
     [watchlist]
   )
 
-  return { watchlist, addMovie, removeMovie, isInWatchlist }
+  return { watchlist, addMovie, removeMovie, updateMovie, getMovie, isInWatchlist }
 }
