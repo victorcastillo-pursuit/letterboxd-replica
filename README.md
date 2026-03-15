@@ -58,6 +58,14 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
+## Screenshots
+
+**Watchlist Roulette — swipe to match movies across two watchlists**
+
+![Roulette Mode](./public/screenshots/roulette.png)
+
+---
+
 ## Project Type
 
 Pursuit Fellowship — Solo portfolio project
