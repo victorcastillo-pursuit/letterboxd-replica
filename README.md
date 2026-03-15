@@ -60,7 +60,11 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## Screenshots
 
-**Watchlist Roulette — swipe to match movies across two watchlists**
+**Watchlist grid with Start Watchlist Roulette banner**
+
+![Watchlist Grid](./public/screenshots/watchlist.png)
+
+**Roulette mode — swipe to match movies across two watchlists**
 
 ![Roulette Mode](./public/screenshots/roulette.png)
 
